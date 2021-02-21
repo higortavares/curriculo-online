@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="curriculo" printOrder="Horizontal" pageWidth="595" pageHeight="842" columnWidth="575" leftMargin="0" rightMargin="20" topMargin="0" bottomMargin="0" uuid="76ae8be2-53d6-4366-9019-12ebf4ca14fa">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="curriculo" columnCount="2" printOrder="Horizontal" pageWidth="595" pageHeight="842" columnWidth="287" leftMargin="0" rightMargin="20" topMargin="0" bottomMargin="0" uuid="76ae8be2-53d6-4366-9019-12ebf4ca14fa">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PostgreSQL"/>
-	<parameter name="username" class="java.lang.String"/>
-	<parameter name="image_path" class="java.lang.String"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="user_id" class="java.lang.Integer"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT 1]]>
 	</queryString>
@@ -15,20 +23,25 @@
 	<detail>
 		<band height="842">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
 			<subreport>
-				<reportElement x="200" y="0" width="380" height="200" uuid="b5133bb9-0e6e-449e-9291-b1568c74bcfb"/>
-				<subreportParameter name="username">
-					<subreportParameterExpression><![CDATA[$P{username}]]></subreportParameterExpression>
+				<reportElement x="200" y="0" width="395" height="842" uuid="b5133bb9-0e6e-449e-9291-b1568c74bcfb">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<subreportParameter name="user_id">
+					<subreportParameterExpression><![CDATA[$P{user_id}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 				<subreportExpression><![CDATA["body_curriculo.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement x="0" y="0" width="200" height="842" uuid="da1f0936-e180-4794-9cd5-90b1b95e98bf">
+				<reportElement x="0" y="0" width="200" height="842" isPrintWhenDetailOverflows="true" uuid="da1f0936-e180-4794-9cd5-90b1b95e98bf">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
-				<subreportParameter name="image_path">
-					<subreportParameterExpression><![CDATA[$P{image_path}]]></subreportParameterExpression>
+				<subreportParameter name="user_id">
+					<subreportParameterExpression><![CDATA[$P{user_id}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 				<subreportExpression><![CDATA["side.jasper"]]></subreportExpression>

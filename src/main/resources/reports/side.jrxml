@@ -13,14 +13,40 @@
 	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
 	<style name="circle" fill="Solid" radius="45" scaleImage="Clip"/>
-	<parameter name="image_path" class="java.lang.String"/>
+	<subDataset name="Contatos" uuid="b3bc13a4-55a9-413d-b40e-f0ab6398e17c">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PostgreSQL"/>
+		<queryString language="SQL">
+			<![CDATA[SELECT CT.description, C.contact FROM 
+contacts C
+INNER JOIN contact_type CT ON C.contact_type_id = CT.contact_type_id
+WHERE C.user_id = 1]]>
+		</queryString>
+		<field name="description" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="description"/>
+			<property name="com.jaspersoft.studio.field.label" value="description"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="contact_type"/>
+		</field>
+		<field name="contact" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="contact"/>
+			<property name="com.jaspersoft.studio.field.label" value="contact"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="contacts"/>
+		</field>
+	</subDataset>
+	<parameter name="user_id" class="java.lang.Integer"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT full_name from users]]>
+		<![CDATA[select full_name,
+concat((select path_configuration from public.configurations where cod_configuration = 'PATH_PROFILE_IMG'),profile_picture) as image_user
+from public.users where user_id = $P{user_id}]]>
 	</queryString>
 	<field name="full_name" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="full_name"/>
 		<property name="com.jaspersoft.studio.field.label" value="full_name"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="users"/>
+	</field>
+	<field name="image_user" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="image_user"/>
+		<property name="com.jaspersoft.studio.field.label" value="image_user"/>
 	</field>
 	<detail>
 		<band height="842" splitType="Stretch">
@@ -31,7 +57,7 @@
 				</reportElement>
 				<image scaleImage="RetainShape">
 					<reportElement mode="Opaque" x="51" y="21" width="90" height="90" forecolor="#3E6590" backcolor="#3E6590" uuid="cee38e93-68e2-4fb4-91be-256ad1a864df"/>
-					<imageExpression><![CDATA[new javax.swing.ImageIcon($P{image_path}).getImage()]]></imageExpression>
+					<imageExpression><![CDATA[new javax.swing.ImageIcon($F{image_user}).getImage()]]></imageExpression>
 				</image>
 				<textField>
 					<reportElement x="0" y="120" width="200" height="30" forecolor="#EEEEEE" uuid="55c6782c-2fb6-43dd-ab6f-d46a9374a2c7"/>
@@ -40,6 +66,32 @@
 					</textElement>
 					<textFieldExpression><![CDATA[$F{full_name}]]></textFieldExpression>
 				</textField>
+				<componentElement>
+					<reportElement style="circle" stretchType="ContainerBottom" x="0" y="160" width="200" height="30" uuid="4058c666-3458-4152-b117-00c2a3f47e8e">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+					</reportElement>
+					<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+						<datasetRun subDataset="Contatos" uuid="244c9691-618e-43bf-8173-9562fdd176d0">
+							<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+						</datasetRun>
+						<jr:listContents height="30" width="200">
+							<textField>
+								<reportElement x="0" y="0" width="200" height="15" forecolor="#EEEEEE" uuid="0c528180-5998-4fa8-9e76-6cbd0d2ee4ee">
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<textElement>
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
+							</textField>
+							<textField>
+								<reportElement x="0" y="15" width="200" height="15" forecolor="#EEEEEE" uuid="964ded38-a45f-4984-93ab-d996ed952a72"/>
+								<textFieldExpression><![CDATA[$F{contact}]]></textFieldExpression>
+							</textField>
+						</jr:listContents>
+					</jr:list>
+				</componentElement>
 			</frame>
 		</band>
 	</detail>

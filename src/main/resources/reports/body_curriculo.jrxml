@@ -3,29 +3,44 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="curriculo" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a6df849a-4515-46a8-ab24-e55d826cd42a">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PostgreSQL"/>
-	<subDataset name="Contatos" uuid="6b7df5c1-a139-4304-b6a7-eb75860623a2">
+	<subDataset name="Exprerience" uuid="07f47811-ef36-4ae1-b9a2-bfbfe93c040b">
 		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PostgreSQL"/>
 		<parameter name="user_id" class="java.lang.Integer"/>
 		<queryString language="SQL">
-			<![CDATA[SELECT contact,description  from contacts
-where user_id = $P{user_id}]]>
+			<![CDATA[select employer ,description ,entry_date ,departure_date ,office from public.background 
+where user_id  = $P{user_id}]]>
 		</queryString>
-		<field name="contact" class="java.lang.String">
-			<property name="com.jaspersoft.studio.field.name" value="contact"/>
-			<property name="com.jaspersoft.studio.field.label" value="contact"/>
-			<property name="com.jaspersoft.studio.field.tree.path" value="contacts"/>
+		<field name="employer" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="employer"/>
+			<property name="com.jaspersoft.studio.field.label" value="employer"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="background"/>
 		</field>
 		<field name="description" class="java.lang.String">
 			<property name="com.jaspersoft.studio.field.name" value="description"/>
 			<property name="com.jaspersoft.studio.field.label" value="description"/>
-			<property name="com.jaspersoft.studio.field.tree.path" value="contacts"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="background"/>
+		</field>
+		<field name="entry_date" class="java.sql.Date">
+			<property name="com.jaspersoft.studio.field.name" value="entry_date"/>
+			<property name="com.jaspersoft.studio.field.label" value="entry_date"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="background"/>
+		</field>
+		<field name="departure_date" class="java.sql.Date">
+			<property name="com.jaspersoft.studio.field.name" value="departure_date"/>
+			<property name="com.jaspersoft.studio.field.label" value="departure_date"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="background"/>
+		</field>
+		<field name="office" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="office"/>
+			<property name="com.jaspersoft.studio.field.label" value="office"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="background"/>
 		</field>
 	</subDataset>
-	<parameter name="username" class="java.lang.String"/>
+	<parameter name="user_id" class="java.lang.Integer"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT U.user_id,U.full_name,U.about   FROM users U
-WHERE U.user_name =  $P{username}]]>
+WHERE U.user_id =  $P{user_id}]]>
 	</queryString>
 	<field name="user_id" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.name" value="user_id"/>
@@ -43,59 +58,73 @@ WHERE U.user_name =  $P{username}]]>
 		<property name="com.jaspersoft.studio.field.tree.path" value="users"/>
 	</field>
 	<detail>
-		<band height="65" splitType="Stretch">
+		<band height="102" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="0" width="380" height="30" forecolor="#3B3944" uuid="b2ef101b-5cbf-4994-98e2-fb2826b28256"/>
-				<box leftPadding="8"/>
+				<reportElement x="0" y="0" width="360" height="30" forecolor="#3B3944" uuid="b2ef101b-5cbf-4994-98e2-fb2826b28256"/>
+				<box leftPadding="0"/>
 				<textElement textAlignment="Left">
 					<font size="14" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{full_name}]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="0" y="25" width="360" height="50" forecolor="#3B3944" uuid="9189c9f5-d714-4794-bd9e-06dcc8e13a19"/>
+				<box leftPadding="0"/>
+				<textFieldExpression><![CDATA[$F{about}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement mode="Opaque" x="0" y="92" width="350" height="1" forecolor="#AAAAAA" uuid="c7da5364-26c1-47d8-9269-ede9743d7b97"/>
+			</line>
+		</band>
+		<band height="123">
 			<componentElement>
-				<reportElement x="0" y="50" width="380" height="13" forecolor="#3B3944" uuid="b5aa7847-a5ed-4d3b-9ce9-ac28e260ba59">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
-					<datasetRun subDataset="Contatos" uuid="662497a0-dfe1-4670-9c1c-1b9ce13018e1">
+				<reportElement x="0" y="40" width="360" height="80" uuid="a8020388-052d-4c73-acfc-a6428f0b22be"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Exprerience" uuid="93430956-02f4-40f3-916b-181995c54800">
 						<datasetParameter name="user_id">
-							<datasetParameterExpression><![CDATA[$F{user_id}]]></datasetParameterExpression>
+							<datasetParameterExpression><![CDATA[$P{user_id}]]></datasetParameterExpression>
 						</datasetParameter>
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
-					<jr:listContents height="13" width="380">
+					<jr:listContents height="80" width="360">
 						<textField>
-							<reportElement mode="Transparent" x="0" y="0" width="380" height="13" forecolor="#3B3944" uuid="3bfd6a5c-5a90-48c1-9a92-04ecefd8744a">
+							<reportElement x="0" y="0" width="100" height="15" uuid="64943e43-9a58-421a-82e1-e5aba4b3edb4">
 								<property name="com.jaspersoft.studio.unit.height" value="px"/>
 							</reportElement>
-							<box leftPadding="8"/>
-							<textFieldExpression><![CDATA[$F{description}+ " : "+$F{contact}]]></textFieldExpression>
+							<textElement>
+								<font size="8" isBold="true"/>
+							</textElement>
+							<textFieldExpression><![CDATA[new SimpleDateFormat("MM/yyyy").format($F{entry_date} )+ " - "+
+new SimpleDateFormat("MM/yyyy").format($F{departure_date})]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="100" y="0" width="260" height="15" uuid="60f60fd4-d5e0-475d-b96e-7abf173c53e7">
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							</reportElement>
+							<textElement>
+								<font isBold="true"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{office}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="100" y="15" width="260" height="15" forecolor="#5151FF" uuid="ef502f53-1127-4025-96b6-a5eedf4a7c25">
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							</reportElement>
+							<textFieldExpression><![CDATA[$F{employer}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="100" y="30" width="260" height="50" uuid="69ccc7f9-34e8-4e31-b6a9-bb0d4da30d65"/>
+							<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
 						</textField>
 					</jr:listContents>
 				</jr:list>
 			</componentElement>
 			<staticText>
-				<reportElement x="0" y="30" width="380" height="20" forecolor="#3B3944" uuid="39b4d902-2881-4b30-9dca-1d47a39cd75b"/>
-				<box leftPadding="8"/>
+				<reportElement x="0" y="10" width="360" height="20" uuid="ce6e87e7-6880-4e63-8df6-475cc8829203"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Contatos]]></text>
-			</staticText>
-		</band>
-		<band height="81">
-			<textField>
-				<reportElement x="0" y="20" width="380" height="50" forecolor="#3B3944" uuid="9189c9f5-d714-4794-bd9e-06dcc8e13a19"/>
-				<box leftPadding="8"/>
-				<textFieldExpression><![CDATA[$F{about}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="0" y="0" width="380" height="20" forecolor="#3B3944" uuid="6868dd82-64c1-418b-a526-f4aa0d9119b4"/>
-				<box leftPadding="8"/>
-				<textElement>
-					<font size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Sobre]]></text>
+				<text><![CDATA[Experiência]]></text>
 			</staticText>
 		</band>
 	</detail>
