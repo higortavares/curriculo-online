@@ -48,51 +48,65 @@ from public.users where user_id = $P{user_id}]]>
 		<property name="com.jaspersoft.studio.field.name" value="image_user"/>
 		<property name="com.jaspersoft.studio.field.label" value="image_user"/>
 	</field>
-	<detail>
-		<band height="842" splitType="Stretch">
+	<background>
+		<band height="842">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<frame>
 				<reportElement mode="Opaque" x="0" y="0" width="200" height="842" backcolor="#3E6590" uuid="74409023-a91f-4bc3-af23-b3e2834158cc">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<image scaleImage="RetainShape">
-					<reportElement mode="Opaque" x="51" y="21" width="90" height="90" forecolor="#3E6590" backcolor="#3E6590" uuid="cee38e93-68e2-4fb4-91be-256ad1a864df"/>
-					<imageExpression><![CDATA[new javax.swing.ImageIcon($F{image_user}).getImage()]]></imageExpression>
-				</image>
-				<textField>
-					<reportElement x="0" y="120" width="200" height="30" forecolor="#EEEEEE" uuid="55c6782c-2fb6-43dd-ab6f-d46a9374a2c7"/>
-					<textElement textAlignment="Center" verticalAlignment="Bottom" markup="none">
-						<font size="12" isBold="true"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{full_name}]]></textFieldExpression>
-				</textField>
-				<componentElement>
-					<reportElement style="circle" stretchType="ContainerBottom" x="0" y="160" width="200" height="30" uuid="4058c666-3458-4152-b117-00c2a3f47e8e">
-						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-						<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
-					</reportElement>
-					<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
-						<datasetRun subDataset="Contatos" uuid="244c9691-618e-43bf-8173-9562fdd176d0">
-							<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-						</datasetRun>
-						<jr:listContents height="30" width="200">
-							<textField>
-								<reportElement x="0" y="0" width="200" height="15" forecolor="#EEEEEE" uuid="0c528180-5998-4fa8-9e76-6cbd0d2ee4ee">
-									<property name="com.jaspersoft.studio.unit.height" value="px"/>
-								</reportElement>
-								<textElement>
-									<font isBold="true"/>
-								</textElement>
-								<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
-							</textField>
-							<textField>
-								<reportElement x="0" y="15" width="200" height="15" forecolor="#EEEEEE" uuid="964ded38-a45f-4984-93ab-d996ed952a72"/>
-								<textFieldExpression><![CDATA[$F{contact}]]></textFieldExpression>
-							</textField>
-						</jr:listContents>
-					</jr:list>
-				</componentElement>
 			</frame>
+		</band>
+	</background>
+	<detail>
+		<band height="169" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<image scaleImage="RetainShape">
+				<reportElement mode="Opaque" x="50" y="20" width="90" height="90" forecolor="#3E6590" backcolor="#3E6590" uuid="cee38e93-68e2-4fb4-91be-256ad1a864df">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA[new javax.swing.ImageIcon($F{image_user}).getImage()]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="0" y="120" width="200" height="30" forecolor="#EEEEEE" uuid="55c6782c-2fb6-43dd-ab6f-d46a9374a2c7">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Bottom" markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{full_name}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="50">
+			<componentElement>
+				<reportElement style="circle" stretchType="ContainerBottom" x="0" y="0" width="200" height="30" uuid="4058c666-3458-4152-b117-00c2a3f47e8e">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="Contatos" uuid="244c9691-618e-43bf-8173-9562fdd176d0">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="30" width="200">
+						<textField>
+							<reportElement x="0" y="0" width="200" height="15" forecolor="#EEEEEE" uuid="0c528180-5998-4fa8-9e76-6cbd0d2ee4ee">
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							</reportElement>
+							<textElement>
+								<font isBold="true"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="0" y="15" width="200" height="15" forecolor="#EEEEEE" uuid="964ded38-a45f-4984-93ab-d996ed952a72"/>
+							<textFieldExpression><![CDATA[$F{contact}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
 		</band>
 	</detail>
 </jasperReport>
