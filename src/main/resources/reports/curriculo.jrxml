@@ -4,6 +4,7 @@
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PostgreSQL"/>
 	<parameter name="username" class="java.lang.String"/>
+	<parameter name="image_path" class="java.lang.String"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT 1]]>
 	</queryString>
@@ -26,6 +27,9 @@
 				<reportElement x="0" y="0" width="200" height="842" uuid="da1f0936-e180-4794-9cd5-90b1b95e98bf">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
+				<subreportParameter name="image_path">
+					<subreportParameterExpression><![CDATA[$P{image_path}]]></subreportParameterExpression>
+				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 				<subreportExpression><![CDATA["side.jasper"]]></subreportExpression>
 			</subreport>

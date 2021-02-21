@@ -12,6 +12,8 @@
 	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<style name="circle" fill="Solid" radius="45" scaleImage="Clip"/>
+	<parameter name="image_path" class="java.lang.String"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT full_name from users]]>
 	</queryString>
@@ -24,16 +26,17 @@
 		<band height="842" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<frame>
-				<reportElement mode="Opaque" x="0" y="0" width="200" height="842" backcolor="#28649D" uuid="74409023-a91f-4bc3-af23-b3e2834158cc">
+				<reportElement mode="Opaque" x="0" y="0" width="200" height="842" backcolor="#3E6590" uuid="74409023-a91f-4bc3-af23-b3e2834158cc">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<ellipse>
-					<reportElement x="46" y="8" width="100" height="90" uuid="315d6361-7a95-49ff-a135-2bcf386abbc6"/>
-				</ellipse>
+				<image scaleImage="RetainShape">
+					<reportElement mode="Opaque" x="51" y="21" width="90" height="90" forecolor="#3E6590" backcolor="#3E6590" uuid="cee38e93-68e2-4fb4-91be-256ad1a864df"/>
+					<imageExpression><![CDATA[new javax.swing.ImageIcon($P{image_path}).getImage()]]></imageExpression>
+				</image>
 				<textField>
-					<reportElement x="0" y="110" width="200" height="30" forecolor="#EEEEEE" uuid="55c6782c-2fb6-43dd-ab6f-d46a9374a2c7"/>
-					<textElement textAlignment="Center" markup="none">
-						<font size="12"/>
+					<reportElement x="0" y="120" width="200" height="30" forecolor="#EEEEEE" uuid="55c6782c-2fb6-43dd-ab6f-d46a9374a2c7"/>
+					<textElement textAlignment="Center" verticalAlignment="Bottom" markup="none">
+						<font size="12" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{full_name}]]></textFieldExpression>
 				</textField>
